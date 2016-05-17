@@ -12,15 +12,15 @@
       <h1 class="titleText">Arbor</h1>
       <h1 class="titleText">Quiz</h1>
     </div>
-    <div class="leafImages">
-      <img src="images/black-birch-leaf.jpg" alt="Leaf Question 1" id="firstQuestion">
-      <!-- <img src="images/common-ash-leaf1.jpg" alt="Leaf Question 2" id="secondQuestion">
-      <img src="images/scarlet-oak-leaf.jpg" alt="Leaf Question 3" id="thirdQuestion">
-      <img src="images/carolina-poplar-leaf.jpg" alt="Leaf Question 4" id="fourthQuestion">
-      <img src="images/red-alder-leaf.jpg" alt="Leaf Question 5" id="fifthQuestion"> -->
+    <div class="quesImages">
+      <img id="quesOne" src="images/black-birch-leaf.jpg" alt="Leaf Question 1" id="firstQuestion">
+      <img id="quesTwo" src="images/common-ash-leaf1.jpg" alt="Leaf Question 2" id="secondQuestion">
+      <img id="quesThree" src="images/scarlet-oak-leaf.jpg" alt="Leaf Question 3" id="thirdQuestion">
+      <img id="quesFour" src="images/carolina-poplar-leaf.jpg" alt="Leaf Question 4" id="fourthQuestion">
+      <img id="quesFive" src="images/red-alder-leaf.jpg" alt="Leaf Question 5" id="fifthQuestion">
     </div>
     <div class="progressArea">
-      <h3 class="quesTitle">Questions</h3>
+      <h3 class="quesTitle">Question<br>Progress</h3>
       <ul class="progressList" id="progNumbers">
         <li class="numbers" id="li1">1</li>
         <li class="numbers" id="li2">2</li>
@@ -30,27 +30,19 @@
       </ul>
     </div>
     <section class="answerArea">
-      <div class="answers" id="q1">
-        <div class="answer" id="Birch">
-          <h3>Birch</h3>
-        </div>
-        <div class="answer" id="Ash">
-          <h3>Ash</h3>
-        </div>
-        <div class="answer" id="Oak">
-          <h3>Oak</h3>
-        </div>
-        <div class="answer" id="Poplar">
-          <h3>Poplar</h3>
-        </div>
-        <div class="answer" id="Alder">
-          <h3>Alder</h3>
-        </div>
-      </div>
-      <div class="answers" id="q2"></div>
-      <div class="answers" id="q3"></div>
-      <div class="answers" id="q4"></div>
-      <div class="answers" id="q5"></div>
+      <h2>What tree is this leaf from?</h2>
+      <form class="inputForm">
+       <input type="radio" class="answerItem" id="q1" name="selectAnswer" value="Birch">
+         Birch<br>
+       <input type="radio" class="answerItem" id="q2" name="selectAnswer" value="Ash">
+         Ash<br>
+       <input type="radio" class="answerItem" id="q3" name="selectAnswer" value="Oak">
+         Oak<br>
+       <input type="radio" class="answerItem" id="q4" name="selectAnswer" value="Poplar">
+         Poplar<br>
+       <input type="radio" class="answerItem" id="q5" name="selectAnswer" value="Alder">
+         Alder<br>
+      </form>
       <div class="submitButton">
         <input type="submit" value="Submit Answer" class="button" id="submitAns">
       </div>

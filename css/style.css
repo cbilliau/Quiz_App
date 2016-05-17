@@ -6,9 +6,10 @@ body {
   height: 650px;
   width: 800px;
   border-radius: 25px;
-  border: 2px solid white;
+  border: 2px solid green;
 }
-.leafImages img {
+
+.quesImages img {
   margin: 0;
   height: 350px;
   width: 500px;
@@ -54,14 +55,68 @@ body {
 }
 .progressList  {
   list-style: none;
-  padding-left: 60px;
+  padding-left: 55px;
 }
 .quesTitle  {
-  /*text-align: center;*/
+  text-align: center;
   font-size: 23px;
 }
 .numbers  {
   margin-bottom: 25px;
   font-size: 75px;
-  font-family:  monospace;
+  font-family:Verdana, Geneva, sans-serif;
+}
+// Question Images
+#quesOne {
+  display: inline;
+}
+#quesTwo  {
+  display: none;
+}
+#quesThree  {
+  display: none;
+}
+#quesFour  {
+  display: none;
+}
+#quesFive  {
+  display: none;
+}
+// Progress  numbers
+#li1  {
+  display: block;
+}
+#li2  {
+  display: none;
+}
+#li3  {
+  display: none;
+}
+#li4  {
+  display: none;
+}
+#li5  {
+  display: none;
+}
+.answerArea h2 {
+  padding-left: 120px;
+  margin-bottom: 20px;
+  font-family: sans-serif;;
+}
+.inputForm  {
+  padding-left: 210px;
+  font-size: 25px;
+  font-family: sans-serif;
+  font-weight: 300;
+}
+.answerItem  {
+  margin-bottom: 10px;
+}
+.submitButton  {
+  padding-left: 190px;
+}
+#submitAns  {
+  font-size: 30px;
+  width: 150px;
+  margin-top: 12px;
 }
