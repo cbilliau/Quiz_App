@@ -1,0 +1,39 @@
+body {
+  background-color: tan;
+}
+.container  {
+  margin: 10px auto;
+  height: 650px;
+  width: 800px;
+  border-radius: 25px;
+  border: 2px solid white;
+}
+.leafImages img {
+  margin: 0;
+  height: 350px;
+  width: 500px;
+  float: left;
+}
+.titleArea  {
+  background-color: beige;
+  margin: 0;
+  border-radius: 22px 0 0 22px;
+  height: 650px;
+  width: 150px;
+  float: left;
+}
+.progressArea  {
+  background-color: beige;
+  margin: 0;
+  border-radius: 0 22px 22px 0;
+  height: 650px;
+  width: 150px;
+  float: right;
+}
+.answerArea  {
+  background-color: lightgrey;
+  margin: 0;
+  height: 300px;
+  width: 500px;
+  float: left;
+}
