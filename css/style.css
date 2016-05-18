@@ -65,27 +65,24 @@ body {
 }
 /* Message Area - Answers */
 .messageArea h2 {
+  font-family: sans-serif;
+  font-weight: 300;
   padding-left: 120px;
   margin-bottom: 20px;
-  font-family: sans-serif;
 }
-.startText {
+.messageArea {
   font-family: sans-serif;
-  font-size: 25px;
   font-weight: 300;
-  text-align: center;
   display: block;
 }
-.inputForm  {
+.answerItem {
+  margin-bottom: 10px;
   padding-left: 210px;
   font-size: 25px;
   font-family: sans-serif;
   font-weight: 300;
-  display: none;
 }
-.answerItem  {
-  margin-bottom: 10px;
-}
+
 #submitAns,
 #startButton  {
   padding-left: 190px;
