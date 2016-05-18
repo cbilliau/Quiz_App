@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Arbor Quiz</title>
+</head>
+<body id="body">
+  <div class="container">
+    <div class="titleArea">
+      <h1 class="titleText">The</h1>
+      <h1 class="titleText">Arbor</h1>
+      <h1 class="titleText">Quiz</h1>
+    </div>
+    <div class="quesImages">
+      <img src="images/scarlet-oak-tree.jpg" alt="Oak Tree" id="openingImg">
+      <img id="quesOne" src="images/black-birch-leaf.jpg" alt="Leaf Question 1" id="firstQuestion">
+      <img id="quesTwo" src="images/common-ash-leaf1.jpg" alt="Leaf Question 2" id="secondQuestion">
+      <img id="quesThree" src="images/scarlet-oak-leaf.jpg" alt="Leaf Question 3" id="thirdQuestion">
+      <img id="quesFour" src="images/carolina-poplar-leaf.jpg" alt="Leaf Question 4" id="fourthQuestion">
+      <img id="quesFive" src="images/red-alder-leaf.jpg" alt="Leaf Question 5" id="fifthQuestion">
+    </div>
+    <div class="progressArea">
+      <h3 class="quesTitle">Question<br>Progress</h3>
+      <ul class="progressList" id="progNumbers">
+        <li class="numbers" id="list1">1</li>
+        <li class="numbers" id="list2">2</li>
+        <li class="numbers" id="list3">3</li>
+        <li class="numbers" id="list4">4</li>
+        <li class="numbers" id="list5">5</li>
+      </ul>
+    </div>
+    <div class="messageArea">
+      <div class="startText">
+        <p class="instructions">This game will test your knowledge of determing a tree by its leaf.</p>
+        <input type="submit" value="Start Game" class="button" id="startButton">
+      </div>
+      <section class="answer">
+        <h2>What tree is this leaf from?</h2>
+        <form class="inputForm">
+           <input type="radio" class="answerItem" id="q1" name="selectAnswer" value="Birch">
+             Birch<br>
+           <input type="radio" class="answerItem" id="q2" name="selectAnswer" value="Ash">
+             Ash<br>
+           <input type="radio" class="answerItem" id="q3" name="selectAnswer" value="Oak">
+             Oak<br>
+           <input type="radio" class="answerItem" id="q4" name="selectAnswer" value="Poplar">
+             Poplar<br>
+           <input type="radio" class="answerItem" id="q5" name="selectAnswer" value="Alder">
+             Alder<br>
+         </form>
+         <div class="submitButton">
+          <input type="submit" value="Submit Answer" class="button" id="submitAns">
+         </div>
+      </section>
+    </div>
+  </div>
+  <!-- <script src="app.js"></script> -->
+</body>
+</html>

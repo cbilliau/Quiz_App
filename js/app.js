@@ -2,6 +2,11 @@ var GAME = {
   running: false,
   currentQuestion: null,
 
+  openGame: function() {
+    this.running = true;
+    this.currentQuestion = null;
+  },
+
   startGame: function(){ // Sets Game.running to 'true' & ques to '0'
     this.running = true;
     this.currentQuestion = 0;
@@ -14,13 +19,27 @@ var GAME = {
 }
 
 var DISPLAY = { // Object that puts questions and answers together
+  renderOpeningImg: function(){
+    var open = OPEN;
+    var htmlStartImg = "";
+    htmlStartImg +=' <img src=' + open.source + ' alt=' + open.alt + ' id=' + open.id + '>';
+    return htmlStartImg;
+
+  },
+  renderOpeningTxt: function(){
+    var open = OPEN;
+    var htmlStartTxt = "";
+    htmlStartTxt +=' <p class="instrutions">' + open.msgText + '</p>';
+    return htmlStartTxt;
+  },
+
   renderQuestion: function(index){ // Object that determines ques to show
     var question = QUESTIONS[index]; // Pull question from QUESTIONS array using 'index'
 
     var html = ""; // Set html variable to 'empty'
     // Set html variable to = question + appro html elements
     html += '   <div class="questionText" id="' + index + '-questionText">';
-    html += '     <img src="' + question.test + '">';
+    html += '     <img src="' + question.text + '">';
     html += '   </div>';
     html += '   <div class="answerSelection">';
 
@@ -53,6 +72,12 @@ var DISPLAY = { // Object that puts questions and answers together
 
 };
 
+var OPEN = {
+  source: 'images/scarlet-oak-tree.jpg',
+  alt: 'Oak Tree',
+  id: 'openingImg',
+  msgText: 'This game will test your knowledge of determing a tree by its leaf.'
+}
 
 var QUESTIONS = [ // Array of questions to be asked and their answers
   { // Question 1
@@ -82,6 +107,13 @@ var QUESTIONS = [ // Array of questions to be asked and their answers
 
 
 $(function(){  // JS Ready function
+// Game opening
+GAME.openGame();
+  var openImg = DISPLAY.renderOpeningImg();
+  var openTxt = DISPLAY.renderOpeningTxt();
+  $('div.quesImages').html(openImg);
+  $('div.startText').html(openTxt + '<input type="submit" value="Start Game" class="button" id="startButton">');
+
   $('#start-button').on('click', function(){ // Start button listener
     GAME.startGame(); // Call func that sets game to start
     var html = DISPLAY.renderQuestion(GAME.currentQuestion); // Calls func that determines questions

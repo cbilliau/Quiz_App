@@ -52,55 +52,18 @@ body {
     4px 4px 3px darkgrey;
   font-family:Verdana, Geneva, sans-serif;
 }
-.progressList  {
+#progressList  {
   list-style: none;
   padding-left: 55px;
+  margin-bottom: 25px;
+  font-size: 75px;
+  font-family:Verdana, Geneva, sans-serif;
 }
 .quesTitle  {
   text-align: center;
   font-size: 23px;
 }
-.numbers  { // Numbers font styling
-  margin-bottom: 25px;
-  font-size: 75px;
-  font-family:Verdana, Geneva, sans-serif;
-}
-// Question Images
-#openingImg  {
-  display: block;
-}
-#quesOne {
-  display: none;
-}
-#quesTwo  {
-  display: none;
-}
-#quesThree  {
-  display: none;
-}
-#quesFour  {
-  display: none;
-}
-#quesFive  {
-  display: none;
-}
-// Progress chart
-#list1  {
-  display: none;
-}
-#list2  {
-  display: none;
-}
-#list3  {
-  display: none;
-}
-#list4  {
-  display: none;
-}
-#list5  {
-  display: none;
-}
-// Message Area - Answers
+/* Message Area - Answers */
 .messageArea h2 {
   padding-left: 120px;
   margin-bottom: 20px;
@@ -112,9 +75,6 @@ body {
   font-weight: 300;
   text-align: center;
   display: block;
-}
-.answer  {
-  display: none;
 }
 .inputForm  {
   padding-left: 210px;
