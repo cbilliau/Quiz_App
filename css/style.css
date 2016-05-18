@@ -31,7 +31,7 @@ body {
   width: 150px;
   float: right;
 }
-.answerArea  {
+.messageArea  {
   background-color: lightgrey;
   margin: 0;
   height: 300px;
@@ -41,7 +41,6 @@ body {
 .titleText,
 .quesTitle  {
   margin-left: 10px;
-  /*color: white;*/
   text-shadow:1px 1px 0 #fff,
     -1px -1px 0 #fff,
     1px -1px 0 #fff,
@@ -61,14 +60,17 @@ body {
   text-align: center;
   font-size: 23px;
 }
-.numbers  {
+.numbers  { // Numbers font styling
   margin-bottom: 25px;
   font-size: 75px;
   font-family:Verdana, Geneva, sans-serif;
 }
 // Question Images
+#openingImg  {
+  display: block;
+}
 #quesOne {
-  display: inline;
+  display: none;
 }
 #quesTwo  {
   display: none;
@@ -82,40 +84,51 @@ body {
 #quesFive  {
   display: none;
 }
-// Progress  numbers
-#li1  {
-  display: block;
-}
-#li2  {
+// Progress chart
+#list1  {
   display: none;
 }
-#li3  {
+#list2  {
   display: none;
 }
-#li4  {
+#list3  {
   display: none;
 }
-#li5  {
+#list4  {
   display: none;
 }
-.answerArea h2 {
+#list5  {
+  display: none;
+}
+// Message Area - Answers
+.messageArea h2 {
   padding-left: 120px;
   margin-bottom: 20px;
-  font-family: sans-serif;;
+  font-family: sans-serif;
+}
+.startText {
+  font-family: sans-serif;
+  font-size: 25px;
+  font-weight: 300;
+  text-align: center;
+  display: block;
+}
+.answer  {
+  display: none;
 }
 .inputForm  {
   padding-left: 210px;
   font-size: 25px;
   font-family: sans-serif;
   font-weight: 300;
+  display: none;
 }
 .answerItem  {
   margin-bottom: 10px;
 }
-.submitButton  {
+#submitAns,
+#startButton  {
   padding-left: 190px;
-}
-#submitAns  {
   font-size: 30px;
   width: 150px;
   margin-top: 12px;

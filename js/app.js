@@ -15,10 +15,10 @@ var GAME = {
 
 var DISPLAY = { // Object that puts questions and answers together
   renderQuestion: function(index){ // Object that determines ques to show
-    var question = QUESTIONS[index]; // Pulls question from QUESTIONS array using 'index'
+    var question = QUESTIONS[index]; // Pull question from QUESTIONS array using 'index'
 
-    var html = ""; // Sets html variable to 'empty'
-    // Sets html variable to = question + appro html elements
+    var html = ""; // Set html variable to 'empty'
+    // Set html variable to = question + appro html elements
     html += '   <div class="questionText" id="' + index + '-questionText">';
     html += '     <img src="' + question.test + '">';
     html += '   </div>';
