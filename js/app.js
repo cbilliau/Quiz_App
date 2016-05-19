@@ -12,6 +12,7 @@ var GAME = {
   startGame: function(){ // Sets Game.running to 'true' & ques to '0'
     this.running = true;
     this.currentQuestion = 0;
+    this.score = 0;
   },
 
   resetGame: function(){ // Sets Game to origin state.
@@ -66,13 +67,36 @@ var DISPLAY = { // Object that puts questions and answers together
       htmlAnswer += '<p>Correct!</p><br>';
       htmlAnswer += '<p>This comes from the ' + answer.answers[answer.correctAnswer] + ' tree.</p><br>';
       htmlAnswer += answer.questionTrivia;
+      GAME.score += 1;
     } else {
       htmlAnswer += '<p class="incorrect">Incorrect</p><br>';
       htmlAnswer += '<p clas"trueAnswer">This leaf is from a ' + answer.answers[answer.correctAnswer] + ' tree.</p><br>';
       htmlAnswer += answer.questionTrivia;
+      GAME.score += 0;
     }
     return htmlAnswer;
-  }
+  },
+
+  renderScoreSummary: function(numCorrect) {
+    var score = numCorrect;
+    var htmlScore = "";
+    htmlScore += '<p class="scoreResult">You scored <b>' + GAME.score + '/5</b> on the quiz.</p><br>';
+    htmlScore += '<p class="scoreResult">Thanks for playing!</p>';
+    return htmlScore;
+  },
+
+  renderContinue: function(index) {
+    var cont = index;
+    var contGame = "";
+    if ( cont < 4 ) {
+      contGame = true;
+      return contGame;
+    } else {
+      contGame = false;
+      return contGame;
+      }
+    }
+
 };
 
 var OPEN = {
@@ -88,9 +112,6 @@ var GAMETEXT = {
   progressNumber: "0"
 }
 
-var GAMESCORE = {
-
-}
 var QUESTIONS = [ // Array of questions to be asked and their answers
   { // Question 1
     source: 'images/black-birch-leaf.jpg',
@@ -106,7 +127,7 @@ var QUESTIONS = [ // Array of questions to be asked and their answers
     ],
 
     correctAnswer: 0, // Correct answer
-    questionTrivia: '<p class="trivia">Birch is a thinleaved deciduous hardwood tree in the family that includes alders, hazels, and hornbeams, and is closely related to the beech/oak family.</p><br>' // Trivia to display after answer submitted
+    questionTrivia: '<p class="trivia">Birch is a thin-leaved deciduous hardwood tree in the family that includes alders, hazels, and hornbeams, and is closely related to the beech/oak family.</p><br>' // Trivia to display after answer submitted
   },
 
   { // Question 2
@@ -181,14 +202,18 @@ var QUESTIONS = [ // Array of questions to be asked and their answers
 
 $(function(){  // JS Ready function
 // Game opening
-  GAME.openGame();
+  beginGame();
+// Game Begin & Reset
+  function beginGame() {
+    GAME.openGame();
     var openImg = DISPLAY.renderOpeningImg();
     var openTxt = DISPLAY.renderOpeningTxt();
     $('div.quesImages').html(openImg);
     $('div.messageArea').html(openTxt + '<input type="submit" value="Start Game" class="button" id="startButton">');
+  };
 // Game Start
-  $('#startButton').on('click', function(){ // Start button listener
-    GAME.startGame(); // Call func that sets game to start
+  $('#startButton').on('click', function(){
+    GAME.startGame();
     DISPLAY.clearQuestion();
     gamePlay();
   });
@@ -210,11 +235,23 @@ $(function(){  // JS Ready function
     var answerIndex = parseInt(checkedRadio.attr('id'));
     DISPLAY.clearQuestion();
     var htmlAnswer = DISPLAY.renderAnswer(GAME.currentQuestion, answerIndex);
-    $('div.messageArea').html(htmlAnswer + '<input type="submit" value="Continue" class="button" id="continueButton">');
-    $('div.messageArea').on('click', '#continueButton', function(){
-      GAME.currentQuestion += 1;
-      gamePlay();
-    });
+    var contGame = DISPLAY.renderContinue(GAME.currentQuestion);
+    GAME.currentQuestion += 1; // Question counter
+    console.log(GAME.currentQuestion);
+    if ( contGame == true ) {
+      console.log(contGame);
+      $('div.messageArea').html(htmlAnswer + '<input type="submit" value="Continue" class="button" id="continueButton">');
+      $('div.messageArea').on('click', '#continueButton', function(){
+        gamePlay();
+      });
+    } else {
+      console.log(contGame);
+      htmlScore = DISPLAY.renderScoreSummary(GAME.score);
+      $('div.messageArea').html(htmlAnswer + htmlScore + '<input type="submit" value="Reset Quiz" class="button" id="continueButton">');
+      $('div.messageArea').on('click', '#continueButton', function(){
+        DISPLAY.clearQuestion();
+        beginGame();
+      });
+    }
   });
-
 });
