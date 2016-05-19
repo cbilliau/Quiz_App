@@ -64,29 +64,20 @@ body {
   font-size: 23px;
 }
 /* Message Area - Answers */
-.messageArea h2 {
-  font-family: sans-serif;
-  font-weight: 300;
-  padding-left: 120px;
-  margin-bottom: 20px;
-}
 .messageArea {
   font-family: sans-serif;
   font-weight: 300;
-  display: block;
+  text-align: center;
+}
+.button {
+  width: 150px;
+  font-size: 35px;
 }
 .answerItem {
+  text-align: left;
   margin-bottom: 10px;
   padding-left: 210px;
   font-size: 25px;
   font-family: sans-serif;
   font-weight: 300;
-}
-
-#submitAns,
-#startButton  {
-  padding-left: 190px;
-  font-size: 30px;
-  width: 150px;
-  margin-top: 12px;
 }

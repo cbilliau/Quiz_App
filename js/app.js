@@ -63,13 +63,13 @@ var DISPLAY = { // Object that puts questions and answers together
     var answer = QUESTIONS[index];
     var htmlAnswer = "";
     if ( answerIndex == answer.correctAnswer ) {
-      htmlAnswer += '<p>Correct!</p><br>';
-      htmlAnswer += '<p>This comes from the ' + answer.answers[answer.correctAnswer] + ' tree.</p><br>';
+      htmlAnswer += '<p>Correct!</p>';
+      htmlAnswer += '<p>This comes from the ' + answer.answers[answer.correctAnswer] + ' tree.</p>';
       htmlAnswer += answer.questionTrivia;
       GAME.score += 1;
     } else {
-      htmlAnswer += '<p class="incorrect">Incorrect</p><br>';
-      htmlAnswer += '<p clas"trueAnswer">This leaf is from a ' + answer.answers[answer.correctAnswer] + ' tree.</p><br>';
+      htmlAnswer += '<p class="incorrect">Incorrect</p>';
+      htmlAnswer += '<p clas"trueAnswer">This leaf is from a ' + answer.answers[answer.correctAnswer] + ' tree.</p>';
       htmlAnswer += answer.questionTrivia;
       GAME.score += 0;
     }
@@ -86,7 +86,7 @@ var DISPLAY = { // Object that puts questions and answers together
   renderScoreSummary: function(numCorrect) {
     var score = numCorrect;
     var htmlScore = "";
-    htmlScore += '<p class="scoreResult">You scored <b>' + GAME.score + '/5</b> on the quiz.</p><br>';
+    htmlScore += '<p class="scoreResult">You scored <b>' + GAME.score + '/5</b> on the quiz.</p>';
     htmlScore += '<p class="scoreResult">Thanks for playing!</p>';
     return htmlScore;
   },
@@ -109,12 +109,12 @@ var OPEN = {
   source: 'images/scarlet-oak-tree.jpg',
   alt: 'Oak Tree',
   id: 'openingImg',
-  msgText: '<h2>This game will test your knowledge of determing a tree by its leaf.</h2>'
+  msgText: '<h3>This game will test your knowledge of determing a tree by its leaf.</h3>'
 }
 
 var GAMETEXT = {
-  submitAnsButton: '<input type="submit" id="submitAns" value="Answer!">',
-  questionChoice: '<h2>What tree is this leaf from?</h2>',
+  submitAnsButton: '<input type="submit" class="button" id="submitAns" value="Answer!">',
+  questionChoice: '<h3>What tree is this leaf from?</h3>',
   progressNumber: "0"
 }
 
@@ -243,19 +243,15 @@ $(function(){  // JS Ready function
     var htmlAnswer = DISPLAY.renderAnswer(GAME.currentQuestion, answerIndex);
     var contGame = DISPLAY.renderContinue(GAME.currentQuestion);
     GAME.currentQuestion += 1; // Question counter
-    console.log(GAME.currentQuestion);
     if ( contGame == true ) {
-      console.log(contGame);
       $('div.messageArea').html(htmlAnswer + '<input type="submit" value="Continue" class="button" id="continueButton">');
       $('div.messageArea').on('click', '#continueButton', function(){
         gamePlay();
       });
     } else {
-      console.log(contGame);
       htmlScore = DISPLAY.renderScoreSummary(GAME.score);
       $('div.messageArea').html(htmlAnswer + htmlScore + '<input type="submit" value="Reset Quiz" class="button" id="resetButton">');
       $('div.messageArea').on('click', '#resetButton', function(){
-        console.log('click ');
         DISPLAY.clearQuestion();
         GAME.resetGame;
         beginGame();
