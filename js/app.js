@@ -1,10 +1,12 @@
 var GAME = {
   running: false,
   currentQuestion: null,
+  score: 0,
 
   openGame: function() {
     this.running = true;
     this.currentQuestion = null;
+    this.score = 0;
   },
 
   startGame: function(){ // Sets Game.running to 'true' & ques to '0'
@@ -15,6 +17,7 @@ var GAME = {
   resetGame: function(){ // Sets Game to origin state.
     this.running = false;
     this.currentQuestion = null;
+    this.score = 0;
   }
 }
 
@@ -53,8 +56,26 @@ var DISPLAY = { // Object that puts questions and answers together
 
   clearQuestion: function(){ // Clears the html elements with class of 'question'
     $('.messageArea').empty();
-  }
+  },
 
+  renderAnswer: function(index, answerIndex) {
+    var answer = QUESTIONS[index];
+    var addScore = ""
+    var htmlAnswer = "";
+    if(answerIndex == answer.correctAnswer) {
+      htmlAnswer += '<p>Correct!</p><br>';
+      htmlAnswer += '<p>' + answer.answers[answer.correctAnswer] + ' is the tree.</p><br>';
+      htmlAnswer += answer.questionTrivia;
+      addScore += true;
+    } else {
+      htmlAnswer += '<p class="incorrect">Incorrect</p><br>';
+      htmlAnswer += '<p clas"trueAnswer">This leaf is from a ' + answer.answers[answer.correctAnswer] + ' tree.</p><br>';
+      htmlAnswer += answer.questionTrivia;
+      addScore += false;
+    }
+    return htmlAnswer;
+    return addScore;
+  }
 };
 
 var OPEN = {
@@ -66,9 +87,13 @@ var OPEN = {
 
 var GAMETEXT = {
   submitAnsButton: '<input type="submit" id="submitAns" value="Answer!">',
-  questionChoice: '<h2>What tree is this leaf from?</h2>'
+  questionChoice: '<h2>What tree is this leaf from?</h2>',
+  progressNumber: "0"
 }
 
+var GAMESCORE = {
+
+}
 var QUESTIONS = [ // Array of questions to be asked and their answers
   { // Question 1
     source: 'images/black-birch-leaf.jpg',
@@ -84,7 +109,7 @@ var QUESTIONS = [ // Array of questions to be asked and their answers
     ],
 
     correctAnswer: 0, // Correct answer
-    questionTrivia: 'Blah blah blah' // Trivia to display after answer submitted
+    questionTrivia: '<p class="trivia">Birch is a thinleaved deciduous hardwood tree in the family that includes alders, hazels, and hornbeams, and is closely related to the beech/oak family. ' // Trivia to display after answer submitted
   },
 
   { // Question 2
@@ -107,7 +132,7 @@ $(function(){  // JS Ready function
     var openTxt = DISPLAY.renderOpeningTxt();
     $('div.quesImages').html(openImg);
     $('div.messageArea').html(openTxt + '<input type="submit" value="Start Game" class="button" id="startButton">');
-
+// Game Start
   $('#startButton').on('click', function(){ // Start button listener
     GAME.startGame(); // Call func that sets game to start
     DISPLAY.clearQuestion();
@@ -115,25 +140,27 @@ $(function(){  // JS Ready function
     var htmlChoice = DISPLAY.renderQuestionChoice(GAME.currentQuestion);
     var htmlTxt = GAMETEXT.questionChoice;
     var htmlSubmit = GAMETEXT.submitAnsButton;
-    console.log(htmlTxt);
-    console.log(htmlChoice);
-    console.log(htmlSubmit);
+    var progressAdv = 1;
+    // console.log(htmlTxt);
+    // console.log(htmlChoice);
+    // console.log(htmlSubmit);
+    // console.log(progressAdv);
     $('div.quesImages').html(htmlImg);
     $('div.messageArea').html(htmlTxt + htmlChoice + htmlSubmit);
+    $('li#progressNum').text(progressAdv);
   });
-
-  $('.question').on('click', '#answerButton', function(){ // Submit button action
-      // Collect player's answer
+// Submit Answer
+  $('div.messageArea').on('click', 'input#submitAns', function(){
+    console.log('click answer');
     var checkedRadio = $('input[name=selectAnswer]:checked');
     var answer = checkedRadio.val();
     var answerIndex = parseInt(checkedRadio.attr('id'));
-
-    console.log("checkedRadio:", checkedRadio);
-    console.log("answer:", answer);
-    console.log("answerIndex:", answerIndex);
-    // if answer is correct
+    // console.log("checkedRadio:", checkedRadio);
+    // console.log("answer:", answer);
+    // console.log("answerIndex:", answerIndex);
     DISPLAY.clearQuestion();
-    $('.answer-trivia').text(); // Call function that displays trivia about answer
+    var htmlAnswer = DISPLAY.renderAnswer(GAME.currentQuestion, answerIndex);
+    $('div.messageArea').html(htmlAnswer);
 
   });
 
