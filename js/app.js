@@ -62,19 +62,16 @@ var DISPLAY = { // Object that puts questions and answers together
     var answer = QUESTIONS[index];
     var addScore = ""
     var htmlAnswer = "";
-    if(answerIndex == answer.correctAnswer) {
+    if ( answerIndex == answer.correctAnswer ) {
       htmlAnswer += '<p>Correct!</p><br>';
-      htmlAnswer += '<p>' + answer.answers[answer.correctAnswer] + ' is the tree.</p><br>';
+      htmlAnswer += '<p>This comes from the ' + answer.answers[answer.correctAnswer] + ' tree.</p><br>';
       htmlAnswer += answer.questionTrivia;
-      addScore += true;
     } else {
       htmlAnswer += '<p class="incorrect">Incorrect</p><br>';
       htmlAnswer += '<p clas"trueAnswer">This leaf is from a ' + answer.answers[answer.correctAnswer] + ' tree.</p><br>';
       htmlAnswer += answer.questionTrivia;
-      addScore += false;
     }
     return htmlAnswer;
-    return addScore;
   }
 };
 
@@ -109,19 +106,76 @@ var QUESTIONS = [ // Array of questions to be asked and their answers
     ],
 
     correctAnswer: 0, // Correct answer
-    questionTrivia: '<p class="trivia">Birch is a thinleaved deciduous hardwood tree in the family that includes alders, hazels, and hornbeams, and is closely related to the beech/oak family. ' // Trivia to display after answer submitted
+    questionTrivia: '<p class="trivia">Birch is a thinleaved deciduous hardwood tree in the family that includes alders, hazels, and hornbeams, and is closely related to the beech/oak family.</p><br>' // Trivia to display after answer submitted
   },
 
   { // Question 2
-    text: "This is the second question?",
-    answers: [
-      'ash.jpg',
-      'fig.jpg'
+    source: 'images/common-ash-leaf1.jpg',
+    alt: 'Leaf Question 2',
+    id: 'secondQuestionImg',
+
+    answers: [ // Array of possible answers
+      'Birch',
+      'Ash',
+      'Oak',
+      'Poplar',
+      'Alder'
     ],
 
-    correctAnswer: 1
-  }
+    correctAnswer: 1, // Correct answer
+    questionTrivia: '<p class="trivia">Ash, is a genus of flowering plants in the olive and lilac family. It contains 45–65 species of usually medium to large trees. The genus is widespread across much of Europe, Asia and North America.</p><br>' // Trivia to display after answer submitted
+  },
 
+  { // Question 3
+    source: 'images/scarlet-oak-leaf.jpg',
+    alt: 'Leaf Question 3',
+    id: 'thirdQuestionImg',
+
+    answers: [ // Array of possible answers
+      'Birch',
+      'Ash',
+      'Oak',
+      'Poplar',
+      'Alder'
+    ],
+
+    correctAnswer: 2, // Correct answer
+    questionTrivia: '<p class="trivia">The oak is a tree of the beech family. There are approximately 600 extant species of oaks. The common name "oak" may also appear in the names of species in related genera. The genus is native to the Northern Hemisphere.</p><br>' // Trivia to display after answer submitted
+  },
+
+  { // Question 4
+    source: 'images/carolina-poplar-leaf.jpg',
+    alt: 'Leaf Question 4',
+    id: 'fourthQuestionImg',
+
+    answers: [ // Array of possible answers
+      'Birch',
+      'Ash',
+      'Oak',
+      'Poplar',
+      'Alder'
+    ],
+
+    correctAnswer: 3, // Correct answer
+    questionTrivia: '<p class="trivia">Populus is a genus of 25–35 species of deciduous flowering plants, native to most of the Northern Hemisphere. English names variously applied to different species include poplar, aspen, and cottonwood.</p><br>' // Trivia to display after answer submitted
+  },
+
+  { // Question 5
+    source: 'images/red-alder-leaf.jpg',
+    alt: 'Leaf Question 5',
+    id: 'fourthQuestionImg',
+
+    answers: [ // Array of possible answers
+      'Birch',
+      'Ash',
+      'Oak',
+      'Poplar',
+      'Alder'
+    ],
+
+    correctAnswer: 4, // Correct answer
+    questionTrivia: '<p class="trivia">Alder is the common name of a genus of flowering plants (Alnus) belonging to the birch family. The genus comprises about 35 species and is distributed throughout the north temperate zone.</p><br>' // Trivia to display after answer submitted
+  }
 ];
 
 
@@ -136,46 +190,31 @@ $(function(){  // JS Ready function
   $('#startButton').on('click', function(){ // Start button listener
     GAME.startGame(); // Call func that sets game to start
     DISPLAY.clearQuestion();
+    gamePlay();
+  });
+// Game play
+  function gamePlay(){
     var htmlImg = DISPLAY.renderQuestionImg(GAME.currentQuestion);
     var htmlChoice = DISPLAY.renderQuestionChoice(GAME.currentQuestion);
     var htmlTxt = GAMETEXT.questionChoice;
     var htmlSubmit = GAMETEXT.submitAnsButton;
     var progressAdv = 1;
-    // console.log(htmlTxt);
-    // console.log(htmlChoice);
-    // console.log(htmlSubmit);
-    // console.log(progressAdv);
     $('div.quesImages').html(htmlImg);
     $('div.messageArea').html(htmlTxt + htmlChoice + htmlSubmit);
     $('li#progressNum').text(progressAdv);
-  });
+  };
 // Submit Answer
   $('div.messageArea').on('click', 'input#submitAns', function(){
-    console.log('click answer');
     var checkedRadio = $('input[name=selectAnswer]:checked');
     var answer = checkedRadio.val();
     var answerIndex = parseInt(checkedRadio.attr('id'));
-    // console.log("checkedRadio:", checkedRadio);
-    // console.log("answer:", answer);
-    // console.log("answerIndex:", answerIndex);
     DISPLAY.clearQuestion();
     var htmlAnswer = DISPLAY.renderAnswer(GAME.currentQuestion, answerIndex);
-    $('div.messageArea').html(htmlAnswer);
-
+    $('div.messageArea').html(htmlAnswer + '<input type="submit" value="Continue" class="button" id="continueButton">');
+    $('div.messageArea').on('click', '#continueButton', function(){
+      GAME.currentQuestion += 1;
+      gamePlay();
+    });
   });
-
-
-
-    /**
-     * <div class="question">
-     *  <div id="questionText">
-     *    <img src="ash.jpg">
-     *  </div>
-     *  <div class="answerSelection">
-     *    <div class="answer" id="answer-1">
-     *    </div>
-     *  </div>
-     * </div>
-     */
 
 });
