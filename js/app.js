@@ -61,7 +61,6 @@ var DISPLAY = { // Object that puts questions and answers together
 
   renderAnswer: function(index, answerIndex) {
     var answer = QUESTIONS[index];
-    var addScore = ""
     var htmlAnswer = "";
     if ( answerIndex == answer.correctAnswer ) {
       htmlAnswer += '<p>Correct!</p><br>';
@@ -75,6 +74,13 @@ var DISPLAY = { // Object that puts questions and answers together
       GAME.score += 0;
     }
     return htmlAnswer;
+  },
+
+  renderGameProgress: function(questionNum){
+    var progress = questionNum + 1;
+    var textProgress = "";
+    textProgress = progress;
+    return textProgress;
   },
 
   renderScoreSummary: function(numCorrect) {
@@ -210,23 +216,23 @@ $(function(){  // JS Ready function
     var openTxt = DISPLAY.renderOpeningTxt();
     $('div.quesImages').html(openImg);
     $('div.messageArea').html(openTxt + '<input type="submit" value="Start Game" class="button" id="startButton">');
-  };
-// Game Start
-  $('#startButton').on('click', function(){
-    GAME.startGame();
-    DISPLAY.clearQuestion();
-    gamePlay();
-  });
+    $('li#progressNum').text("");
+    $('div.messageArea').on('click', '#startButton', function(){
+      GAME.startGame();
+      DISPLAY.clearQuestion();
+      gamePlay();
+      });
+    };
 // Game play
   function gamePlay(){
     var htmlImg = DISPLAY.renderQuestionImg(GAME.currentQuestion);
     var htmlChoice = DISPLAY.renderQuestionChoice(GAME.currentQuestion);
     var htmlTxt = GAMETEXT.questionChoice;
     var htmlSubmit = GAMETEXT.submitAnsButton;
-    var progressAdv = 1;
+    var textProgress = DISPLAY.renderGameProgress(GAME.currentQuestion);
     $('div.quesImages').html(htmlImg);
     $('div.messageArea').html(htmlTxt + htmlChoice + htmlSubmit);
-    $('li#progressNum').text(progressAdv);
+    $('li#progressNum').text(textProgress);
   };
 // Submit Answer
   $('div.messageArea').on('click', 'input#submitAns', function(){
@@ -247,9 +253,11 @@ $(function(){  // JS Ready function
     } else {
       console.log(contGame);
       htmlScore = DISPLAY.renderScoreSummary(GAME.score);
-      $('div.messageArea').html(htmlAnswer + htmlScore + '<input type="submit" value="Reset Quiz" class="button" id="continueButton">');
-      $('div.messageArea').on('click', '#continueButton', function(){
+      $('div.messageArea').html(htmlAnswer + htmlScore + '<input type="submit" value="Reset Quiz" class="button" id="resetButton">');
+      $('div.messageArea').on('click', '#resetButton', function(){
+        console.log('click ');
         DISPLAY.clearQuestion();
+        GAME.resetGame;
         beginGame();
       });
     }
