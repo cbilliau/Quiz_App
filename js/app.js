@@ -33,7 +33,7 @@ var DISPLAY = { // Object that puts questions and answers together
   renderOpeningTxt: function(){
     var open = OPEN;
     var htmlStartTxt = "";
-    htmlStartTxt +='<p class="instrutions">' + open.msgText + '</p>';
+    htmlStartTxt +='<h2 class="instructions">' + open.msgText + '</h2>';
     return htmlStartTxt;
   },
 
@@ -56,7 +56,9 @@ var DISPLAY = { // Object that puts questions and answers together
   },
 
   clearQuestion: function(){ // Clears the html elements with class of 'question'
-    $('.messageArea').empty();
+    $('.messageArea').html('<div class="msg"></div>'
+                      + '<div class="choices"></div>'
+                      + '<div class="button"></div>');
   },
 
   renderAnswer: function(index, answerIndex) {
@@ -109,12 +111,12 @@ var OPEN = {
   source: 'images/scarlet-oak-tree.jpg',
   alt: 'Oak Tree',
   id: 'openingImg',
-  msgText: '<h3>This game will test your knowledge of determing a tree by its leaf.</h3>'
+  msgText: 'This game will test your knowledge of determing a tree by its leaf.'
 }
 
 var GAMETEXT = {
-  submitAnsButton: '<input type="submit" class="button" id="submitAns" value="Answer!">',
-  questionChoice: '<h3>What tree is this leaf from?</h3>',
+  submitAnsButton: '<input type="submit" id="submitAns" value="Answer!">',
+  questionChoice: '<h3 id="question">What tree is this leaf from?</h3>',
   progressNumber: "0"
 }
 
@@ -205,7 +207,6 @@ var QUESTIONS = [ // Array of questions to be asked and their answers
   }
 ];
 
-
 $(function(){  // JS Ready function
 // Game opening
   beginGame();
@@ -215,9 +216,10 @@ $(function(){  // JS Ready function
     var openImg = DISPLAY.renderOpeningImg();
     var openTxt = DISPLAY.renderOpeningTxt();
     $('div.quesImages').html(openImg);
-    $('div.messageArea').html(openTxt + '<input type="submit" value="Start Game" class="button" id="startButton">');
-    $('li#progressNum').text("");
-    $('div.messageArea').on('click', '#startButton', function(){
+    $('div.msg').html(openTxt);
+    $('div.button').html('<input type="submit" value="Start Game" id="startButton">');
+    $('li#progressNum').text();
+    $('.messageArea').on('click', '#startButton', function(){
       GAME.startGame();
       DISPLAY.clearQuestion();
       gamePlay();
@@ -231,27 +233,33 @@ $(function(){  // JS Ready function
     var htmlSubmit = GAMETEXT.submitAnsButton;
     var textProgress = DISPLAY.renderGameProgress(GAME.currentQuestion);
     $('div.quesImages').html(htmlImg);
-    $('div.messageArea').html(htmlTxt + htmlChoice + htmlSubmit);
+    console.log(htmlTxt);
+    $('div.msg').html(htmlTxt);
+    console.log(htmlChoice);
+    $('div.choices').html(htmlChoice);
+    $('div.button').html(htmlSubmit);
     $('li#progressNum').text(textProgress);
   };
 // Submit Answer
-  $('div.messageArea').on('click', 'input#submitAns', function(){
+  $('div.button').on('click', '#submitAns', function(){
+    console.log('click');
     var checkedRadio = $('input[name=selectAnswer]:checked');
-    var answer = checkedRadio.val();
+    var answer = checkedRadio.val(); //Not needed?
     var answerIndex = parseInt(checkedRadio.attr('id'));
     DISPLAY.clearQuestion();
     var htmlAnswer = DISPLAY.renderAnswer(GAME.currentQuestion, answerIndex);
     var contGame = DISPLAY.renderContinue(GAME.currentQuestion);
     GAME.currentQuestion += 1; // Question counter
     if ( contGame == true ) {
-      $('div.messageArea').html(htmlAnswer + '<input type="submit" value="Continue" class="button" id="continueButton">');
-      $('div.messageArea').on('click', '#continueButton', function(){
+      DISPLAY.clearQuestion();
+      $('.button').html(htmlAnswer + '<input type="submit" value="Continue"  id="continueButton">');
+      $('.button').on('click', '#continueButton', function(){
         gamePlay();
       });
     } else {
       htmlScore = DISPLAY.renderScoreSummary(GAME.score);
-      $('div.messageArea').html(htmlAnswer + htmlScore + '<input type="submit" value="Reset Quiz" class="button" id="resetButton">');
-      $('div.messageArea').on('click', '#resetButton', function(){
+      $('.button').html(htmlAnswer + htmlScore + '<input type="submit" value="Reset Quiz"  id="resetButton">');
+      $('.button').on('click', '#resetButton', function(){
         DISPLAY.clearQuestion();
         GAME.resetGame;
         beginGame();

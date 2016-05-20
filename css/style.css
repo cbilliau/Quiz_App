@@ -64,18 +64,30 @@ body {
   font-size: 23px;
 }
 /* Message Area - Answers */
-.messageArea {
+.instructions {
   font-family: sans-serif;
   font-weight: 300;
   text-align: center;
 }
-.button {
+.button  {
+  text-align: center;
+}
+#startButton,
+#submitAns,
+#continueButton,
+#resetButton {
   width: 150px;
   font-size: 35px;
+  text-align: center;
+}
+#question  {
+  font-family: sans-serif;
+  font-weight: 300;
+  text-align: center;
 }
 .answerItem {
   text-align: left;
-  margin-bottom: 10px;
+  margin: 0 0 10px 210px;
   padding-left: 210px;
   font-size: 25px;
   font-family: sans-serif;
