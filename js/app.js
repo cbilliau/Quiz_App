@@ -58,19 +58,20 @@ var DISPLAY = { // Object that puts questions and answers together
   clearQuestion: function(){ // Clears the html elements with class of 'question'
     $('.messageArea').html('<div class="msg"></div>'
                       + '<div class="choices"></div>'
-                      + '<div class="button"></div>');
+                      + '<div class="button"></div>'
+                      + '<div class="error"></div>');
   },
 
   renderAnswer: function(index, answerIndex) {
     var answer = QUESTIONS[index];
     var htmlAnswer = "";
     if ( answerIndex == answer.correctAnswer ) {
-      htmlAnswer += '<p>Correct!</p>';
+      htmlAnswer += '<h3>Correct!</h3>';
       htmlAnswer += '<p>This comes from the ' + answer.answers[answer.correctAnswer] + ' tree.</p>';
       htmlAnswer += answer.questionTrivia;
       GAME.score += 1;
     } else {
-      htmlAnswer += '<p class="incorrect">Incorrect</p>';
+      htmlAnswer += '<h3>Incorrect</h3>';
       htmlAnswer += '<p clas"trueAnswer">This leaf is from a ' + answer.answers[answer.correctAnswer] + ' tree.</p>';
       htmlAnswer += answer.questionTrivia;
       GAME.score += 0;
@@ -241,29 +242,35 @@ $(function(){  // JS Ready function
     $('li#progressNum').text(textProgress);
   };
 // Submit Answer
-  $('div.button').on('click', '#submitAns', function(){
+  $('.messageArea').on('click', '#submitAns', function(){
     console.log('click');
     var checkedRadio = $('input[name=selectAnswer]:checked');
     var answer = checkedRadio.val(); //Not needed?
-    var answerIndex = parseInt(checkedRadio.attr('id'));
-    DISPLAY.clearQuestion();
-    var htmlAnswer = DISPLAY.renderAnswer(GAME.currentQuestion, answerIndex);
-    var contGame = DISPLAY.renderContinue(GAME.currentQuestion);
-    GAME.currentQuestion += 1; // Question counter
-    if ( contGame == true ) {
-      DISPLAY.clearQuestion();
-      $('.button').html(htmlAnswer + '<input type="submit" value="Continue"  id="continueButton">');
-      $('.button').on('click', '#continueButton', function(){
-        gamePlay();
-      });
+    if (!answer) {
+      $('.error').html('<p>Please make a choice</p>')
     } else {
-      htmlScore = DISPLAY.renderScoreSummary(GAME.score);
-      $('.button').html(htmlAnswer + htmlScore + '<input type="submit" value="Reset Quiz"  id="resetButton">');
-      $('.button').on('click', '#resetButton', function(){
+      var answerIndex = parseInt(checkedRadio.attr('id'));
+      DISPLAY.clearQuestion();
+      var htmlAnswer = DISPLAY.renderAnswer(GAME.currentQuestion, answerIndex);
+      var contGame = DISPLAY.renderContinue(GAME.currentQuestion);
+      GAME.currentQuestion += 1; // Question counter
+      if ( contGame == true ) {
         DISPLAY.clearQuestion();
-        GAME.resetGame;
-        beginGame();
-      });
+        $('.button').html(htmlAnswer + '<input type="submit" value="Continue"  id="continueButton">');
+        $('.button').on('click', '#continueButton', function(){
+          gamePlay();
+        });
+      } else {
+        htmlScore = DISPLAY.renderScoreSummary(GAME.score);
+        $('.button').html(htmlAnswer + htmlScore + '<input type="submit" value="Reset Quiz"  id="resetButton">');
+        $('.button').on('click', '#resetButton', function(){
+          DISPLAY.clearQuestion();
+          GAME.resetGame;
+          $('li#progressNum').text('');
+          beginGame();
+        });
+      }
     }
+
   });
 });
