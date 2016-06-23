@@ -1,0 +1,103 @@
+// Var //
+@bg-c: background-color;
+
+body {
+  @bg-c: tan;
+}
+.container  {
+  margin: 10px auto;
+  height: 650px;
+  width: 800px;
+  border-radius: 25px;
+  border: 2px solid green;
+}
+
+.quesImages  {
+  margin: 0;
+  height: 350px;
+  width: 500px;
+  float: left;
+}
+.titleArea  {
+  @bg-c: beige;
+  margin: 0;
+  border-radius: 22px 0 0 22px;
+  height: 650px;
+  width: 150px;
+  float: left;
+}
+.progressArea  {
+  @bg-c: beige;
+  margin: 0;
+  border-radius: 0 22px 22px 0;
+  height: 650px;
+  width: 150px;
+  float: right;
+}
+.messageArea  {
+  @bg-c: lightgrey;
+  .quesImages;
+}
+
+.titleText,
+.quesTitle  {
+  margin-left: 10px;
+  text-shadow:1px 1px 0 #fff,
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    0px 1px 0 #fff,
+    1px 0px 0 #fff,
+    0px -1px 0 #fff,
+    -1px 0px 0 #fff,
+    4px 4px 3px darkgrey;
+  font-family:Verdana, Geneva, sans-serif;
+}
+#progressList  {
+  list-style: none;
+  padding-left: 55px;
+  margin-bottom: 25px;
+  font-size: 75px;
+  font-family:Verdana, Geneva, sans-serif;
+}
+.quesTitle  {
+  text-align: center;
+  font-size: 23px;
+}
+/* Message Area - Answers */
+.instructions {
+  font-family: sans-serif;
+  font-weight: 300;
+  text-align: center;
+}
+.error  {
+  color: red;
+  .instructions;
+}
+.msg {
+  .instructions;
+
+}
+.button  {
+  text-align: center;
+}
+#startButton,
+#submitAns,
+#continueButton,
+#resetButton {
+  width: 150px;
+  font-size: 35px;
+  text-align: center;
+}
+#question  {
+    .instructions;
+}
+
+.answerItem {
+  text-align: left;
+  margin: 0 0 10px 210px;
+  padding-left: 210px;
+  font-size: 25px;
+  font-family: sans-serif;
+  font-weight: 300;
+}

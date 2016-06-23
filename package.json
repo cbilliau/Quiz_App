@@ -1,0 +1,38 @@
+{
+  "name": "quiz_app",
+  "version": "1.0.0",
+  "description": "A sample quiz app",
+  "main": "index.js",
+  "scripts": {
+   "mkdir": "mkdir -p build",
+    "build": "npm run clean && npm run mkdir && npm run build:html && npm run build:css && npm run build:js",
+    "watch": "npm run watch:html & npm run watch:css",
+    "clean": "rm -rf build",
+    "build:html": "npm run clean:html && cp *.html build/",
+    "watch:html": "npm run build:html && chokidar *.html -c 'npm run build:html'",
+    "clean:html": "rm -f build/*.html",
+    "build:js": "npm run clean:js && cp js/*.js build/",
+    "watch:js": "npm run build:js && chokidar js/*.js -c 'npm run build:js'",
+    "clean:js": "rm -f build/*.js",
+    "build:css": "npm run clean:css && lessc --source-map css/style.less build/style.css",
+    "watch:css": "npm run build:css && chokidar 'css/**/*.less' -c 'npm run build:css'",
+     "clean:css": "rm -f build/$npm_package_name.$npm_package_version.css build/$npm_package_name.$npm_package_version.css.map"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cbilliau/Quiz_App.git"
+  },
+  "author": "cbilliau",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cbilliau/Quiz_App/issues"
+  },
+  "homepage": "https://github.com/cbilliau/Quiz_App#readme",
+  "dependencies": {
+    "jquery": "^3.0.0",
+    "less": "^2.7.1"
+  },
+  "devDependencies": {
+    "less": "^2.7.1"
+  }
+}
