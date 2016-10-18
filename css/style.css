@@ -1,12 +1,12 @@
 body {
-  background-color: tan;
+  background-color: #04BFBF;
 }
 .container  {
   margin: 10px auto;
   height: 650px;
   width: 800px;
   border-radius: 25px;
-  border: 2px solid green;
+  border: 4px solid #588F27;
 }
 
 .quesImages img {
@@ -16,7 +16,7 @@ body {
   float: left;
 }
 .titleArea  {
-  background-color: beige;
+  background-color: #A9CF54;
   margin: 0;
   border-radius: 22px 0 0 22px;
   height: 650px;
@@ -24,7 +24,7 @@ body {
   float: left;
 }
 .progressArea  {
-  background-color: beige;
+  background-color: #A9CF54;
   margin: 0;
   border-radius: 0 22px 22px 0;
   height: 650px;
@@ -32,7 +32,7 @@ body {
   float: right;
 }
 .messageArea  {
-  background-color: lightgrey;
+  background-color: #F7E967;
   margin: 0;
   height: 300px;
   width: 500px;
@@ -75,7 +75,7 @@ body {
   font-family: sans-serif;
   font-weight: 300;
 }
-.msg {
+.msg     {
   font-family: sans-serif;
   font-weight: 300;
   text-align: center;
@@ -83,14 +83,14 @@ body {
 .button  {
   text-align: center;
 }
-#startButton,
+/*#startButton,
 #submitAns,
 #continueButton,
 #resetButton {
   width: 150px;
   font-size: 35px;
   text-align: center;
-}
+}*/
 #question  {
   font-family: sans-serif;
   font-weight: 300;

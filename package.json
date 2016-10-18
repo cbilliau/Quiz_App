@@ -1,45 +1,45 @@
 {
-  "name": "quiz_app",
-  "version": "1.0.0",
-  "description": "A sample quiz app",
-  "main": "index.js",
-  "scripts": {
-    "mkdir": "mkdir -p build",
-    "build": "npm run clean && npm run mkdir && npm run build:html && npm run build:css && npm run build:js",
-    "watch": "npm run watch:html & npm run watch:css",
-    "clean": "rm -rf build",
-    "build:html": "npm run clean:html && cp *.html build/",
-    "watch:html": "npm run build:html && chokidar *.html -c 'npm run build:html'",
-    "clean:html": "rm -f build/*.html",
-    "build:js": "npm run clean:js && cp js/*.js build/",
-    "watch:js": "npm run build:js && chokidar js/*.js -c 'npm run build:js'",
-    "clean:js": "rm -f build/*.js",
-    "build:css": "npm run build:css:unminified && npm run build:css:minified",
-    "watch:css": "npm run watch:css:unminified & npm run watch:css:minified",
-    "clean:css": "npm run clean:css:unminified && npm run clean:css:minified",
-    "build:css:unminified": "npm run clean:css:unminified && lessc --source-map css/style.less build/style.css",
-    "watch:css:unminified": "npm run build:css:unminified && chokidar 'css/**/*.(css|less)' -c 'npm run build:css:unminified'",
-    "clean:css:unminified": "rm -f build/style.css build/style.css.map",
-    "build:css:minified": "npm run clean:css:minified && lessc --clean-css --source-map css/style.less build/style.min.css",
-    "watch:css:minified": "npm run build:css:minified && chokidar 'css/**/*.(css|less)' -c 'npm run build:css:minified'",
-    "clean:css:minified": "rm -f build/style.min.css build/style.min.css.map"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cbilliau/Quiz_App.git"
-  },
-  "author": "cbilliau",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/cbilliau/Quiz_App/issues"
-  },
-  "homepage": "https://github.com/cbilliau/Quiz_App#readme",
-  "dependencies": {
-    "jquery": "^3.0.0",
-    "less": "^2.7.1"
-  },
-  "devDependencies": {
-    "less": "^2.7.1",
-    "less-plugin-clean-css": "^1.5.1"
-  }
+    "name": "quiz_app",
+    "version": "1.0.0",
+    "description": "A sample quiz app",
+    "main": "index.js",
+    "scripts": {
+        "mkdir": "mkdir -p build",
+        "build": "npm run clean && npm run mkdir && npm run build:html && npm run build:css && npm run build:js",
+        "watch": "npm run watch:html & npm run watch:css",
+        "clean": "rm -rf build",
+        "build:html": "npm run clean:html && cp *.html build/",
+        "watch:html": "npm run build:html && chokidar *.html -c 'npm run build:html'",
+        "clean:html": "rm -f build/*.html",
+        "build:js": "npm run clean:js && cp js/*.js build/",
+        "watch:js": "npm run build:js && chokidar js/*.js -c 'npm run build:js'",
+        "clean:js": "rm -f build/*.js",
+        "build:css": "npm run build:css:unminified && npm run build:css:minified",
+        "watch:css": "npm run watch:css:unminified & npm run watch:css:minified",
+        "clean:css": "npm run clean:css:unminified && npm run clean:css:minified",
+        "build:css:unminified": "npm run clean:css:unminified && lessc --source-map css/style.less build/style.css",
+        "watch:css:unminified": "npm run build:css:unminified && chokidar 'css/**/*.(css|less)' -c 'npm run build:css:unminified'",
+        "clean:css:unminified": "rm -f build/style.css build/style.css.map",
+        "build:css:minified": "npm run clean:css:minified && lessc --clean-css --source-map css/style.less build/style.min.css",
+        "watch:css:minified": "npm run build:css:minified && chokidar 'css/**/*.(css|less)' -c 'npm run build:css:minified'",
+        "clean:css:minified": "rm -f build/style.min.css build/style.min.css.map"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/cbilliau/Quiz_App.git"
+    },
+    "author": "cbilliau",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/cbilliau/Quiz_App/issues"
+    },
+    "homepage": "https://github.com/cbilliau/Quiz_App#readme",
+    "dependencies": {
+        "jquery": "^3.0.0",
+        "less": "^2.7.1"
+    },
+    "devDependencies": {
+        "less": "^2.7.1",
+        "less-plugin-clean-css": "^1.5.1"
+    }
 }
